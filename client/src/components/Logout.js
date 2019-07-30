@@ -1,10 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import { logout } from "../redux/authActions";
-import { NavLink } from "reactstrap";
+import { Button } from "reactstrap";
 
 function Logout(props) {
-  return <NavLink onClick={props.logout} href="#">Logout</NavLink>;
+  return (
+    <Button color="secondary" size="sm" onClick={props.logout} href="#">
+      Logout
+    </Button>
+  );
 }
 
 export default connect(

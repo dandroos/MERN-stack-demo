@@ -75,9 +75,9 @@ class RegisterModal extends Component {
 
   render() {
     return (
-      <div>
-        <Button color="success" size="sm" onClick={this.toggle} href="#">
-          Register
+      <>
+        <Button color="danger" size="sm" block onClick={this.toggle} >
+          <small>Register</small>
         </Button>
 
         <Modal className="text-dark" isOpen={this.state.modal} toggle={this.toggle}>
@@ -122,7 +122,7 @@ class RegisterModal extends Component {
             </Form>
           </ModalBody>
         </Modal>
-      </div>
+      </>
     );
   }
 }

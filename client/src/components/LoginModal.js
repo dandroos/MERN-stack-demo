@@ -11,7 +11,7 @@ import {
   NavLink,
   Alert
 } from "reactstrap";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { login } from "../redux/authActions";
 import { clearErrors } from "../redux/errorActions";
@@ -73,12 +73,16 @@ class LoginModal extends Component {
 
   render() {
     return (
-      <div>
-        <Button color="success" onClick={this.toggle} href="#">
-          Login
+      <>
+        <Button color="success" size="sm" block onClick={this.toggle}>
+          <small>Login</small>
         </Button>
 
-        <Modal className="text-dark" isOpen={this.state.modal} toggle={this.toggle}>
+        <Modal
+          className="text-dark"
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+        >
           <ModalHeader toggle={this.toggle}>Login</ModalHeader>
           <ModalBody>
             {this.state.msg ? (
@@ -111,7 +115,7 @@ class LoginModal extends Component {
             </Form>
           </ModalBody>
         </Modal>
-      </div>
+      </>
     );
   }
 }
@@ -120,8 +124,8 @@ const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
     error: state.error
-  }
-}
+  };
+};
 
 export default connect(
   mapStateToProps,

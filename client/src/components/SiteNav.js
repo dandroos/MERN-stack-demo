@@ -61,7 +61,7 @@ function SiteNav(props) {
         </NavLink>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="ml-auto" navbar>
+          <Nav className="mr-auto" navbar>
             <NavItem>
               <NavLink
                 to="/guestbook"
@@ -71,7 +71,6 @@ function SiteNav(props) {
                 Guestbook
               </NavLink>
             </NavItem>
-            {props.isAuthenticated ? logoutSection : loginRegisterSection}
 
             {/* <NavItem>
                 <AniLink fade to="/second-page" className="nav-link" duration={animationDuration}>
@@ -99,7 +98,13 @@ function SiteNav(props) {
                   <DropdownItem>Reset</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown> */}
+          
           </Nav>
+          <hr className="d-block d-sm-none" />
+          <Nav navbar>
+            {props.isAuthenticated ? logoutSection : loginRegisterSection}
+          </Nav>
+        
         </Collapse>
       </Navbar>
     </div>
