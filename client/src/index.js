@@ -8,6 +8,8 @@ import "popper.js";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 
 ReactDOM.render(
-    <BrowserRouter >
-        <Route path="/" component={App} />
-    </BrowserRouter>, document.getElementById("root"));
+  <BrowserRouter>
+    <Route path="/" component={App} />
+  </BrowserRouter>,
+  document.getElementById("root")
+);

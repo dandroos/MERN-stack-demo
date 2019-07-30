@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
 import { NavLink } from "react-router-dom";
 // import AniLink from "gatsby-plugin-transition-link/AniLink"
@@ -16,12 +17,41 @@ import {
 import "jquery";
 import "popper.js";
 
-export default function SiteNav(props) {
+import RegisterModal from "./RegisterModal";
+import LoginModal from "./LoginModal";
+import Logout from "./Logout";
+
+function SiteNav(props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleLinkClick = () => {
+    if (isOpen) {
+      toggle();
+    }
+  };
+
+  const loginRegisterSection = (
+    <>
+      <NavItem>
+        <RegisterModal />
+      </NavItem>
+      <NavItem>
+        <LoginModal />
+      </NavItem>
+    </>
+  );
+
+  const logoutSection = (
+    <>
+      <NavItem>
+        <Logout />
+      </NavItem>
+    </>
+  );
 
   return (
     <div>
@@ -33,10 +63,16 @@ export default function SiteNav(props) {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink to="/guestbook" className="nav-link" onClick={toggle}>
+              <NavLink
+                to="/guestbook"
+                className="nav-link"
+                onClick={handleLinkClick}
+              >
                 Guestbook
               </NavLink>
             </NavItem>
+            {props.isAuthenticated ? logoutSection : loginRegisterSection}
+
             {/* <NavItem>
                 <AniLink fade to="/second-page" className="nav-link" duration={animationDuration}>
                   Second page
@@ -69,3 +105,12 @@ export default function SiteNav(props) {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    isAuthenticated: state.auth.isAuthenticated
+  };
+};
+
+export default connect(mapStateToProps)(SiteNav);

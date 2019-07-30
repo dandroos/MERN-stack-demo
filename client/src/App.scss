@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,900&display=swap");
 
 $primary: darken(rgb(54, 131, 52), 10%);
-$secondary: invert($primary);
 $body-color: white;
 $body-bg: lighten($primary, 15%);
 
@@ -1147,6 +1146,11 @@ $enable-rounded: false;
 @import "../node_modules/bootstrap/scss/utilities";
 
 @import "../node_modules/bootstrap/scss/button-group";
+
+.modal-title{
+  font-weight: 900;
+  font-size: 3rem;
+}
 
 .page {
   position: absolute;

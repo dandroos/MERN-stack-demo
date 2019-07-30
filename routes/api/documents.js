@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const auth = require("../../middleware/auth");
 
 const Document = require("../../models/Document");
 
@@ -9,7 +10,7 @@ router.get("/", (req, res) => {
     .then(documents => res.json(documents));
 });
 
-router.post("/", (req, res) => {
+router.post("/", auth, (req, res) => {
   const newDocument = new Document({
     title: req.body.title,
     body: req.body.body

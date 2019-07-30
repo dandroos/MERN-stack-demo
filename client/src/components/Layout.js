@@ -6,13 +6,13 @@ import Footer from "./Footer";
 export default function Layout(props) {
   return (
     <div>
-      <ScrollToTop>
-        <SiteNav />
+        {/* <SiteNav /> */}
+      {/* <ScrollToTop> */}
         <div className="page">
           {props.children}
           <Footer />
         </div>
-      </ScrollToTop>
+      {/* </ScrollToTop> */}
     </div>
   );
 }
