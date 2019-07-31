@@ -1,5 +1,7 @@
 import { GET_DOCUMENTS, INSERT_DOCUMENT, DELETE_DOCUMENT } from "./actionTypes";
 import axios from "axios";
+import { tokenConfig } from "./authActions";
+import { returnErrors } from "./errorActions";
 
 export const getDocuments = () => dispatch => {
   axios.get("/api/documents").then(res =>
@@ -10,8 +12,8 @@ export const getDocuments = () => dispatch => {
   );
 };
 
-export const insertDocument = data => dispatch => {
-  axios.post("/api/documents", data).then(res =>
+export const insertDocument = data => (dispatch, getState) => {
+  axios.post("/api/documents", data, tokenConfig(getState)).then(res =>
     dispatch({
       type: INSERT_DOCUMENT,
       payload: res.data

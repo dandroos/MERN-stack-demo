@@ -1,20 +1,25 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { Container } from "reactstrap";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 import { insertDocument } from "../redux/actions";
 
-export default function AddDocumentForm() {
+function AddDocumentForm(props) {
   const dispatch = useDispatch();
+  console.log(props.user.name)
   const [formValues, setFormValues] = useState({
     title: "",
-    body: ""
+    body: "",
   });
 
   const handleClick = e => {
     e.preventDefault();
-    dispatch(insertDocument(formValues));
+    dispatch(insertDocument({
+      ...formValues,
+      author: props.user.name
+    }
+      ));
     setFormValues({
       title: "",
       body: ""
@@ -25,12 +30,14 @@ export default function AddDocumentForm() {
     switch (e.target.id) {
       case "title":
         setFormValues({
+          ...formValues,
           title: e.target.value,
           body: formValues.body
         });
         break;
       case "body":
         setFormValues({
+          ...formValues,
           title: formValues.title,
           body: e.target.value
         });
@@ -72,3 +79,12 @@ export default function AddDocumentForm() {
     </Container>
   );
 }
+
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    user: state.auth.user
+  };
+};
+
+export default connect(mapStateToProps)(AddDocumentForm);
