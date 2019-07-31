@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { getDocuments, deleteDocument } from "../redux/actions";
-
+import moment from "moment";
 import { useTransition, animated } from "react-spring";
 
 import { Container, Button } from "reactstrap";
@@ -32,6 +32,9 @@ function Documents(props) {
           className="mb-4 p-2 border-bottom"
         >
           <h2 className="font-weight-bold">{item.title}</h2>
+          <p>
+            <small>{`Posted by ${item.author} ${moment(item.date).fromNow()}`}</small>
+          </p>
           <p>{item.body}</p>
           <div className="text-right">
             <Button

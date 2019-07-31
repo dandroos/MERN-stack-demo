@@ -10,8 +10,9 @@ import { loadUser } from "./redux/authActions";
 
 import Welcome from "./pages/Welcome";
 import Guestbook from "./pages/Guestbook";
+import Contact from "./pages/Contact";
 
-import SiteNav from './components/SiteNav'
+import SiteNav from "./components/SiteNav";
 
 function App() {
   useEffect(() => store.dispatch(loadUser()), []);
@@ -33,6 +34,7 @@ function App() {
                   <Switch location={props.location}>
                     <Route exact path="/" component={Welcome} />
                     <Route path="/guestbook" component={Guestbook} />
+                    <Route path="/contact" component={Contact} />
                   </Switch>
                 </CSSTransition>
               </TransitionGroup>

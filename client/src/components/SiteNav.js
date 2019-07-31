@@ -71,6 +71,15 @@ function SiteNav(props) {
                 Guestbook
               </NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink
+                to="/contact"
+                className="nav-link"
+                onClick={handleLinkClick}
+              >
+                Contact
+              </NavLink>
+            </NavItem>
 
             {/* <NavItem>
                 <AniLink fade to="/second-page" className="nav-link" duration={animationDuration}>

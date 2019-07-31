@@ -7,7 +7,6 @@ import { insertDocument } from "../redux/actions";
 
 function AddDocumentForm(props) {
   const dispatch = useDispatch();
-  console.log(props.user.name)
   const [formValues, setFormValues] = useState({
     title: "",
     body: "",
