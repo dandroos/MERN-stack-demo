@@ -14,4 +14,6 @@ export const GET_ERRORS = "GET_ERRORS";
 export const CLEAR_ERRORS = "CLEAR_ERRORS";
 
 export const MAIL_SENDING = "MAIL_SENDING";
-export const MAIL_SENT = "MAIL_SENT"
+export const MAIL_SENT = "MAIL_SENT";
+export const RESET_FORM = "RESET_FORM";
+export const MAIL_NOT_SENT = "MAIL_NOT_SENT";

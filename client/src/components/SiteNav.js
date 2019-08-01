@@ -36,10 +36,10 @@ function SiteNav(props) {
 
   const loginRegisterSection = (
     <>
-      <NavItem>
+      <NavItem onClick={toggle}>
         <RegisterModal />
       </NavItem>
-      <NavItem>
+      <NavItem onClick={toggle}>
         <LoginModal />
       </NavItem>
     </>
@@ -47,7 +47,7 @@ function SiteNav(props) {
 
   const logoutSection = (
     <>
-      <NavItem>
+      <NavItem onClick={toggle}>
         <Logout />
       </NavItem>
     </>
@@ -107,13 +107,11 @@ function SiteNav(props) {
                   <DropdownItem>Reset</DropdownItem>
                 </DropdownMenu>
               </UncontrolledDropdown> */}
-          
           </Nav>
           <hr className="d-block d-sm-none" />
           <Nav navbar>
             {props.isAuthenticated ? logoutSection : loginRegisterSection}
           </Nav>
-        
         </Collapse>
       </Navbar>
     </div>
@@ -121,7 +119,6 @@ function SiteNav(props) {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     isAuthenticated: state.auth.isAuthenticated
   };

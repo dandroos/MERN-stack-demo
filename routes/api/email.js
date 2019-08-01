@@ -2,7 +2,8 @@ var helper = require("sendgrid").mail;
 const async = require("async");
 const express = require("express");
 const router = express.Router();
-const auth = require("../../middleware/auth");
+const { check, validationResult } = require("express-validator");
+
 const sendEmail = (
   parentCallback,
   fromEmail,
@@ -61,35 +62,56 @@ const sendEmail = (
   });
 };
 
-router.post("/", (req, res) => {
-  async.parallel(
-    [
-      function(callback) {
-        sendEmail(
-          callback,
-          "dandrewsuk82@gmail.com",
-          [req.body.email],
-          "You have received a new email from your website!",
-          `<h1>Contact</h1>
+router.post(
+  "/",
+  [
+    // Validate and sanitize
+    check("name")
+      .trim()
+      .escape(),
+    check("email")
+      .isEmail()
+      .trim()
+      .escape(),
+    check("message")
+      .trim()
+      .escape()
+  ],
+  (req, res) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(422).json({ errors: errors.array });
+    }
+    async.parallel(
+      [
+        function(callback) {
+          sendEmail(
+            callback,
+            "dandrewsuk82@gmail.com",
+            [req.body.email],
+            "You have received a new email from your website!",
+            null,
+            `<h1>Contact</h1>
           <div><strong>Name: </strong>${req.body.name}</div>
           <div><strong>Email: </strong>${req.body.email}</div>
-          <div><strong>Name: </strong><p>${req.body.message}</p></div>
+          <div><strong>Message: </strong><p>${req.body.message}</p></div>
           `
-        );
+          );
+        }
+      ],
+      function(err, results) {
+        if (err) {
+          res.json({ success: false });
+        }
+        res.json({
+          success: true,
+          message: "Emails sent",
+          successfulEmails: results[0].successfulEmails,
+          errorEmails: results[0].errorEmails
+        });
       }
-    ],
-    function(err, results) {
-      if (err) {
-        res.json({ success: false });
-      }
-      res.json({
-        success: true,
-        message: "Emails sent",
-        successfulEmails: results[0].successfulEmails,
-        errorEmails: results[0].errorEmails
-      });
-    }
-  );
-});
+    );
+  }
+);
 
 module.exports = router;
