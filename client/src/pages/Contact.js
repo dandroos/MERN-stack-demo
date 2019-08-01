@@ -1,8 +1,6 @@
 import React, {useState} from "react";
-import AddDocumentForm from "../components/AddDocumentForm";
 import { Container, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import Layout from "../components/Layout";
-import Documents from "../components/Documents";
 import { connect } from "react-redux";
 
 function Contact(props) {
