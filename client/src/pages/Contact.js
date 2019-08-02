@@ -78,52 +78,58 @@ function Contact(props) {
             { props.error.id === "MAIL_NOT_SENT" ? (
               <Alert color="danger">{props.error.msg.msg}</Alert>
             ): null}
-            <FormGroup>
-              <Label for="name">Name</Label>
-              {props.isAuthenticated ? (
-                <Input
-                  type="text"
-                  name="name"
-                  id="name"
-                  value={formValues.name}
-                  onChange={handleChange}
-                  required
-                  disabled
-                />
-              ) : (
-                <Input
-                  type="text"
-                  name="name"
-                  id="name"
-                  value={formValues.name}
-                  onChange={handleChange}
-                  required
-                />
-              )}
-            </FormGroup>
-            <FormGroup>
-              <Label for="email">Email</Label>
-              {props.isAuthenticated ? (
-                <Input
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={formValues.email}
-                  onChange={handleChange}
-                  required
-                  disabled
-                />
-              ) : (
-                <Input
-                  type="email"
-                  name="email"
-                  id="email"
-                  value={formValues.email}
-                  onChange={handleChange}
-                  required
-                />
-              )}
-            </FormGroup>
+            <Row>
+              <Col sm>
+                <FormGroup>
+                  <Label for="name">Name</Label>
+                  {props.isAuthenticated ? (
+                    <Input
+                      type="text"
+                      name="name"
+                      id="name"
+                      value={formValues.name}
+                      onChange={handleChange}
+                      required
+                      disabled
+                    />
+                  ) : (
+                    <Input
+                      type="text"
+                      name="name"
+                      id="name"
+                      value={formValues.name}
+                      onChange={handleChange}
+                      required
+                    />
+                  )}
+                </FormGroup>
+              </Col>
+              <Col sm>
+                <FormGroup>
+                  <Label for="email">Email</Label>
+                  {props.isAuthenticated ? (
+                    <Input
+                      type="email"
+                      name="email"
+                      id="email"
+                      value={formValues.email}
+                      onChange={handleChange}
+                      required
+                      disabled
+                    />
+                  ) : (
+                    <Input
+                      type="email"
+                      name="email"
+                      id="email"
+                      value={formValues.email}
+                      onChange={handleChange}
+                      required
+                    />
+                  )}
+                </FormGroup>
+              </Col>
+            </Row>
             <FormGroup>
               <Label for="body">Message</Label>
               <Input

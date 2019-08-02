@@ -1147,7 +1147,17 @@ $enable-rounded: false;
 
 @import "../node_modules/bootstrap/scss/button-group";
 
-.modal-title{
+body{
+  cursor: default;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  transform: translateY(-0.15rem);
+  transition: all .2s;
+}
+
+.modal-title {
   font-weight: 900;
   font-size: 3rem;
 }
