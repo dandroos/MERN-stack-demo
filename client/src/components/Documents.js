@@ -7,11 +7,13 @@ import { useTransition, animated } from "react-spring";
 import { Container, Button } from "reactstrap";
 
 function Documents(props) {
+
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getDocuments());
-  }, [dispatch]);
+  useEffect(()=>{
+      dispatch(getDocuments())
+  }, [dispatch, props.isAuthenticated])
+
 
   const removeDocument = e => {
     dispatch(deleteDocument(e.target.id));
@@ -25,35 +27,47 @@ function Documents(props) {
 
   return (
     <Container>
-      {transitions.map(({ item, props, key }) => (
-        <animated.div
-          key={item._id}
-          style={props}
-          className="mb-4 p-2 border-bottom"
-        >
-          <h2 className="font-weight-bold">{item.title}</h2>
-          <p>
-            <small>{`Posted by ${item.author} ${moment(item.date).fromNow()}`}</small>
-          </p>
-          <p>{item.body}</p>
-          <div className="text-right">
-            <Button
-              size="sm"
-              color="primary"
-              id={item._id}
-              onClick={removeDocument}
-            >
-              Delete
-            </Button>
-          </div>
-        </animated.div>
-      ))}
+      {transitions.map(({ item, animatedProps, key }) => {
+
+        return (
+          <animated.div
+            key={item._id}
+            style={animatedProps}
+            className="mb-4 p-2 border-bottom"
+          >
+            <h2 className="font-weight-bold">{item.title}</h2>
+            <p>
+              <small>
+                Posted by {' '}
+                {props.user && props.user.id === item.author_id ? (<span className="font-weight-bold">YOU</span>) : item.author}
+                {' '}
+                {moment(item.date).fromNow()}
+              </small>
+            </p>
+            <p>{item.body}</p>
+            {props.user && props.user.id === item.author_id ? (
+              <div className="text-right">
+                <Button
+                  size="sm"
+                  color="primary"
+                  id={item._id}
+                  onClick={removeDocument}
+                >
+                  Delete
+                </Button>
+              </div>
+            ) : null}
+          </animated.div>
+        );
+      })}
     </Container>
   );
 }
 
 const mapStateToProps = state => {
   return {
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user,
     documents: state.documents.documents
   };
 };

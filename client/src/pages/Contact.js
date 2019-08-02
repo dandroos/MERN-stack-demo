@@ -47,7 +47,7 @@ function Contact(props) {
         email: props.user.email
       });
     }
-  }, [props.isAuthenticated]);
+  }, [props.isAuthenticated, formValues, props.user]);
 
   useEffect(() => {
     if (props.isSent) {
@@ -66,7 +66,7 @@ function Contact(props) {
         dispatch(resetForm());
       }, 5000);
     }
-  }, [props.isSent]);
+  }, [props.isSent, defaultFormValuesNoAuth, dispatch, props.user, props.isAuthenticated]);
 
   return (
     <Layout>

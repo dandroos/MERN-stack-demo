@@ -9,10 +9,10 @@ import {
   NavbarToggler,
   Nav,
   NavItem,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem
+  // UncontrolledDropdown,
+  // DropdownToggle,
+  // DropdownMenu,
+  // DropdownItem
 } from "reactstrap";
 import "jquery";
 import "popper.js";
@@ -36,10 +36,10 @@ function SiteNav(props) {
 
   const loginRegisterSection = (
     <>
-      <NavItem onClick={toggle}>
+      <NavItem onClick={handleLinkClick}>
         <RegisterModal />
       </NavItem>
-      <NavItem onClick={toggle}>
+      <NavItem onClick={handleLinkClick}>
         <LoginModal />
       </NavItem>
     </>
@@ -47,7 +47,7 @@ function SiteNav(props) {
 
   const logoutSection = (
     <>
-      <NavItem onClick={toggle}>
+      <NavItem onClick={handleLinkClick}>
         <Logout />
       </NavItem>
     </>

@@ -12,11 +12,12 @@ function AddDocumentForm(props) {
     body: "",
   });
 
-  const handleClick = e => {
+  const handleSubmit = e => {
     e.preventDefault();
     dispatch(insertDocument({
       ...formValues,
-      author: props.user.name
+      author: props.user.name,
+      author_id: props.user.id
     }
       ));
     setFormValues({
@@ -48,7 +49,7 @@ function AddDocumentForm(props) {
 
   return (
     <Container className="mb-4">
-      <Form className="border-bottom pb-4">
+      <Form onSubmit={handleSubmit} className="border-bottom pb-4">
         <FormGroup>
           <Label for="title">Headline</Label>
           <Input
@@ -71,7 +72,7 @@ function AddDocumentForm(props) {
             required
           />
         </FormGroup>
-        <Button color="primary" onClick={handleClick}>
+        <Button color="primary">
           Submit
         </Button>
       </Form>
@@ -80,7 +81,6 @@ function AddDocumentForm(props) {
 }
 
 const mapStateToProps = state => {
-  console.log(state);
   return {
     user: state.auth.user
   };

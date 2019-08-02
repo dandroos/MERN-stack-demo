@@ -17,18 +17,19 @@ export const loadUser = () => (dispatch, getState) => {
 
   axios
     .get("/api/auth/user", tokenConfig(getState))
-    .then(res =>
+    .then(res => {
       dispatch({
         type: USER_LOADED,
         payload: res.data
-      })
-    )
+      });
+    })
     .catch(err => {
       dispatch(returnErrors(err.response.data, err.response.status));
       dispatch({
         type: AUTH_ERROR
       });
     });
+  // return Promise.resolve()
 };
 
 export const register = ({ name, email, password }) => dispatch => {
@@ -76,7 +77,9 @@ export const login = ({ email, password }) => dispatch => {
       })
     )
     .catch(err => {
-      dispatch(returnErrors(err.response.data, err.response.status, LOGIN_FAIL));
+      dispatch(
+        returnErrors(err.response.data, err.response.status, LOGIN_FAIL)
+      );
       dispatch({
         type: LOGIN_FAIL
       });

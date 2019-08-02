@@ -17,3 +17,5 @@ export const MAIL_SENDING = "MAIL_SENDING";
 export const MAIL_SENT = "MAIL_SENT";
 export const RESET_FORM = "RESET_FORM";
 export const MAIL_NOT_SENT = "MAIL_NOT_SENT";
+
+export const GET_CURRENT_USER = "GET_CURRENT_USER"

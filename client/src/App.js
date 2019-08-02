@@ -15,7 +15,11 @@ import Contact from "./pages/Contact";
 import SiteNav from "./components/SiteNav";
 
 function App() {
-  useEffect(() => store.dispatch(loadUser()), []);
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      store.dispatch(loadUser());
+    }
+  }, []);
 
   return (
     <Provider store={store}>

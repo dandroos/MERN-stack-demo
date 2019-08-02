@@ -8,7 +8,7 @@ import {
   FormGroup,
   Label,
   Input,
-  NavLink,
+  // NavLink,
   Alert
 } from "reactstrap";
 import PropTypes from "prop-types";
@@ -90,11 +90,11 @@ class LoginModal extends Component {
             ) : null}
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <Label for="email">Email</Label>
+                <Label for="login-email">Email</Label>
                 <Input
                   type="email"
                   name="email"
-                  id="email"
+                  id="login-email"
                   placeholder="Email"
                   className="mb-4"
                   onChange={this.onChange}

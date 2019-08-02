@@ -1,7 +1,7 @@
 import { GET_DOCUMENTS, INSERT_DOCUMENT, DELETE_DOCUMENT } from "./actionTypes";
 import axios from "axios";
 import { tokenConfig } from "./authActions";
-import { returnErrors } from "./errorActions";
+// import { returnErrors } from "./errorActions";
 
 export const getDocuments = () => dispatch => {
   axios.get("/api/documents").then(res =>

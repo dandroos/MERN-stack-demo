@@ -14,7 +14,8 @@ router.post("/", auth, (req, res) => {
   const newDocument = new Document({
     title: req.body.title,
     body: req.body.body,
-    author: req.body.author
+    author: req.body.author,
+    author_id: req.body.author_id
   });
 
   newDocument.save().then(document => res.json(document));

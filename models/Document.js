@@ -11,6 +11,10 @@ const DocumentSchema = new Schema({
     type: String,
     required: true
   },
+  author_id: {
+    type: String,
+    required: true
+  },
   body: {
     type: String,
     required: true

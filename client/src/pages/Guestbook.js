@@ -11,11 +11,9 @@ function Guestbook(props) {
       <div>
         <h1 className="font-weight-bold display-3 text-center">Guestbook</h1>
         <p className="lead text-center">
-          A starter guestbook <span className="font-weight-bold">MERN</span>{" "}
-          stack app!
+          Let me know you were here!
         </p>
         { props.isAuthenticated ? <AddDocumentForm /> : <p className="text-center">Please register/login to post on my lovely guestbook!</p> }
-        {/* <AddDocumentForm /> */}
         <Documents />
       </div>
     </Layout>
@@ -25,7 +23,7 @@ function Guestbook(props) {
 const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
-    user: state.user
+    user: state.auth.user
   };
 };
 

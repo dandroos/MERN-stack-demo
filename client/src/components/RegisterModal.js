@@ -8,7 +8,7 @@ import {
   FormGroup,
   Label,
   Input,
-  NavLink,
+  // NavLink,
   Alert
 } from "reactstrap";
 import PropTypes from 'prop-types';
@@ -63,13 +63,11 @@ class RegisterModal extends Component {
   onSubmit = e => {
     e.preventDefault();
     const { name, email, password } = this.state;
-
     const newUser = {
       name,
       email,
       password
     };
-
     this.props.register(newUser);
   };
 
@@ -97,11 +95,11 @@ class RegisterModal extends Component {
                   className="mb-4"
                   onChange={this.onChange}
                 />
-                <Label for="email">Email</Label>
+                <Label for="register-email">Email</Label>
                 <Input
                   type="email"
                   name="email"
-                  id="email"
+                  id="register-email"
                   placeholder="Email"
                   className="mb-4"
                   onChange={this.onChange}
