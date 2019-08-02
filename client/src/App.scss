@@ -1151,8 +1151,7 @@ body{
   cursor: default;
 }
 
-.nav-link:hover,
-.nav-link:focus {
+.nav-link:hover {
   transform: translateY(-0.15rem);
   transition: all .2s;
 }
