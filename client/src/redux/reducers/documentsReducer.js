@@ -22,7 +22,7 @@ export default(state=initialState, action)=>{
             return {
                 ...state,
                 documents: state.documents.filter((i)=>{
-                    return action.payload !== i._id
+                    return action.payload !== i.id || action.payload !== i._id
                 })
             }
         }

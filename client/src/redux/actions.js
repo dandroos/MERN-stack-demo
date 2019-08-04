@@ -16,7 +16,10 @@ export const insertDocument = data => (dispatch, getState) => {
   axios.post("/api/documents", data, tokenConfig(getState)).then(res =>
     dispatch({
       type: INSERT_DOCUMENT,
-      payload: res.data
+      payload: {
+        ...res.data,
+        id: res.data._id
+      }
     })
   );
 };

@@ -10,6 +10,7 @@ import { loadUser } from "./redux/authActions";
 
 import Welcome from "./pages/Welcome";
 import Guestbook from "./pages/Guestbook";
+import Account from "./pages/Account";
 import Contact from "./pages/Contact";
 
 import SiteNav from "./components/SiteNav";
@@ -39,6 +40,7 @@ function App() {
                     <Route exact path="/" component={Welcome} />
                     <Route path="/guestbook" component={Guestbook} />
                     <Route path="/contact" component={Contact} />
+                    <Route path="/account" component={Account} />
                   </Switch>
                 </CSSTransition>
               </TransitionGroup>

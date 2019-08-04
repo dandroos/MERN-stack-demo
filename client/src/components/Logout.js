@@ -5,8 +5,8 @@ import { Button } from "reactstrap";
 
 function Logout(props) {
   return (
-    <Button color="secondary" size="sm" onClick={props.logout} href="#">
-      Logout
+    <Button color="secondary" onClick={props.logout} block>
+      <small>Logout</small>
     </Button>
   );
 }

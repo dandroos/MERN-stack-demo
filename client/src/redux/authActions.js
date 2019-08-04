@@ -9,8 +9,28 @@ import {
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
-  REGISTER_FAIL
+  REGISTER_FAIL,
+  USER_UPDATING,
+  USER_UPDATED
 } from "./actionTypes";
+
+export const updateUser = ({id, name, email}) => (dispatch, getState) => {
+  dispatch({
+    type: USER_UPDATING
+  })
+
+  const body = JSON.stringify({ name, email })
+
+  axios.post(`/api/users/${id}`, body, tokenConfig(getState)).then((res)=>{
+    dispatch({
+      type: USER_UPDATED,
+      payload: res.data
+    })
+    // dispatch({
+    //   // Reset form
+    // })
+  })
+}
 
 export const loadUser = () => (dispatch, getState) => {
   dispatch({ type: USER_LOADING });

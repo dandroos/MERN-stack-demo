@@ -74,7 +74,7 @@ class LoginModal extends Component {
   render() {
     return (
       <>
-        <Button color="success" size="sm" block onClick={this.toggle}>
+        <Button color="success" block onClick={this.toggle}>
           <small>Login</small>
         </Button>
 

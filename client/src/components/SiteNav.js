@@ -8,7 +8,7 @@ import {
   Navbar,
   NavbarToggler,
   Nav,
-  NavItem,
+  NavItem
   // UncontrolledDropdown,
   // DropdownToggle,
   // DropdownMenu,
@@ -22,6 +22,7 @@ import LoginModal from "./LoginModal";
 import Logout from "./Logout";
 
 function SiteNav(props) {
+  // console.log(props.user)
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {
@@ -48,6 +49,13 @@ function SiteNav(props) {
   const logoutSection = (
     <>
       <NavItem onClick={handleLinkClick}>
+        {props.user ? (
+          <NavLink to={`/account`} className="nav-link pr-4">
+            <small>My Account</small>
+          </NavLink>
+        ) : null}
+      </NavItem>
+      <NavItem onClick={handleLinkClick}>
         <Logout />
       </NavItem>
     </>
@@ -57,7 +65,7 @@ function SiteNav(props) {
     <div>
       <Navbar expand="md" color="primary" dark fixed="top" id="navbarNav">
         <NavLink exact to="/" className="navbar-brand">
-          MERN Starter
+          MERN Demo
         </NavLink>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
@@ -120,7 +128,8 @@ function SiteNav(props) {
 
 const mapStateToProps = state => {
   return {
-    isAuthenticated: state.auth.isAuthenticated
+    isAuthenticated: state.auth.isAuthenticated,
+    user: state.auth.user
   };
 };
 

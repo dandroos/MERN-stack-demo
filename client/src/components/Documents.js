@@ -19,7 +19,7 @@ function Documents(props) {
     dispatch(deleteDocument(e.target.id));
   };
 
-  const transitions = useTransition(props.documents, item => item._id, {
+  const transitions = useTransition(props.documents, item => item.id, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 }
@@ -28,10 +28,9 @@ function Documents(props) {
   return (
     <Container>
       {transitions.map(({ item, animatedProps, key }) => {
-
         return (
           <animated.div
-            key={item._id}
+            key={key}
             style={animatedProps}
             className="mb-4 p-2 border-bottom"
           >
@@ -39,7 +38,8 @@ function Documents(props) {
             <p>
               <small>
                 Posted by {' '}
-                {props.user && props.user.id === item.author_id ? (<span className="font-weight-bold">YOU</span>) : item.author}
+                
+                <a href={`mailto:${item.email}`}>{props.user && props.user.id === item.author_id ? (<span className="font-weight-bold">YOU</span>) : item.name}</a>
                 {' '}
                 {moment(item.date).fromNow()}
               </small>
@@ -50,7 +50,7 @@ function Documents(props) {
                 <Button
                   size="sm"
                   color="primary"
-                  id={item._id}
+                  id={item.id}
                   onClick={removeDocument}
                 >
                   Delete

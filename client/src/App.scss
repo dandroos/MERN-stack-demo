@@ -1,8 +1,9 @@
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,900&display=swap");
 
-$primary: darken(rgb(50, 148, 83), 10%);
+$primary: darken(rgb(26, 129, 90), 10%);
 $body-color: white;
 $body-bg: lighten($primary, 15%);
+$link-color: lighten($primary, 60%);
 
 $font-family-sans-serif: "Montserrat", sans-serif;
 $font-weight-normal: 300;

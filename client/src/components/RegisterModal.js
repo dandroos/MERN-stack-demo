@@ -74,7 +74,7 @@ class RegisterModal extends Component {
   render() {
     return (
       <>
-        <Button color="danger" size="sm" block onClick={this.toggle} >
+        <Button color="danger" block onClick={this.toggle} >
           <small>Register</small>
         </Button>
 

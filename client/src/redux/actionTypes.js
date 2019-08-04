@@ -18,4 +18,9 @@ export const MAIL_SENT = "MAIL_SENT";
 export const RESET_FORM = "RESET_FORM";
 export const MAIL_NOT_SENT = "MAIL_NOT_SENT";
 
-export const GET_CURRENT_USER = "GET_CURRENT_USER"
+export const USER_UPDATING = "UPDATING_USER";
+export const USER_UPDATED = "USER_UPDATED";
+
+// export const CHECKING_USER = "CHECKING_USER";
+// export const USER_AUTHORISED = "USER_AUTHORISED";
+// export const USER_NOT_AUTHORISED = "USER_NOT_AUTHORISED";

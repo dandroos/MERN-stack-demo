@@ -7,10 +7,6 @@ const DocumentSchema = new Schema({
     type: String,
     required: true
   },
-  author: {
-    type: String,
-    required: true
-  },
   author_id: {
     type: String,
     required: true
@@ -24,5 +20,9 @@ const DocumentSchema = new Schema({
     default: Date.now
   }
 });
+
+// DocumentSchema.set('toJSON', {
+//   virtuals: true
+// })
 
 module.exports = Document = mongoose.model("post", DocumentSchema);

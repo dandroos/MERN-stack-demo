@@ -6,14 +6,19 @@ import {
   LOGIN_FAIL,
   LOGOUT_SUCCESS,
   REGISTER_SUCCESS,
-  REGISTER_FAIL
+  USER_UPDATING,
+  USER_UPDATED,
+  REGISTER_FAIL,
 } from "../actionTypes";
 
 const initialState = {
   token: localStorage.getItem("token"),
   isAuthenticated: null,
   isLoading: false,
+  isUpdating: false,
+  isUpdated: false,
   user: null
+
 };
 
 export default function(state = initialState, action) {
@@ -55,6 +60,18 @@ export default function(state = initialState, action) {
         isAuthenticated: false,
         isLoading: false
       };
+    case USER_UPDATING:
+      return{
+        ...state,
+        isUpdated: false,
+        isUpdating: true
+      };
+    case USER_UPDATED:
+      return{
+        ...state,
+        isUpdating: false,
+        isUpdated: true
+      }
     default:
       return state;
   }
