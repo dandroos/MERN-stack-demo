@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 
 import { NavLink } from "react-router-dom";
-// import AniLink from "gatsby-plugin-transition-link/AniLink"
 import {
   Collapse,
   Navbar,
@@ -22,7 +21,6 @@ import LoginModal from "./LoginModal";
 import Logout from "./Logout";
 
 function SiteNav(props) {
-  // console.log(props.user)
   const [isOpen, setIsOpen] = useState(false);
 
   const toggle = () => {

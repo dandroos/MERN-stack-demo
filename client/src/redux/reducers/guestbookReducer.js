@@ -21,7 +21,6 @@ export default(state=initialState, action)=>{
             }
         }
         case INSERT_DOCUMENT: {
-            console.log(action.payload)
             return {
                 ...state,
                 documents: [action.payload, ...state.documents]

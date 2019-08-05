@@ -17,14 +17,14 @@ import { sendMail, resetForm } from "../redux/mailActions";
 function Contact(props) {
   const dispatch = useDispatch();
 
-  const defaultFormValuesNoAuth = {
+  const defFormVals = {
     name: "",
     email: "",
     message: ""
   };
 
   const [formValues, setFormValues] = useState({
-    ...defaultFormValuesNoAuth
+    ...defFormVals
   });
 
   const handleChange = e => {
@@ -53,20 +53,20 @@ function Contact(props) {
     if (props.isSent) {
       if (props.isAuthenticated) {
         setFormValues({
-          ...defaultFormValuesNoAuth,
+          ...defFormVals,
           name: props.user.name,
           email: props.user.email
         });
       } else {
         setFormValues({
-          ...defaultFormValuesNoAuth
+          ...defFormVals
         });
       }
       setTimeout(() => {
         dispatch(resetForm());
       }, 5000);
     }
-  }, [props.isSent, defaultFormValuesNoAuth, dispatch, props.user, props.isAuthenticated]);
+  }, [props.isSent, defFormVals, dispatch, props.user, props.isAuthenticated]);
 
   return (
     <Layout>
@@ -75,9 +75,9 @@ function Contact(props) {
         <p className="lead text-center">Get in touch!</p>
         <Container className="mb-4">
           <Form onSubmit={handleSubmit}>
-            { props.error.id === "MAIL_NOT_SENT" ? (
+            {props.error.id === "MAIL_NOT_SENT" ? (
               <Alert color="danger">{props.error.msg.msg}</Alert>
-            ): null}
+            ) : null}
             <Row>
               <Col sm>
                 <FormGroup>
@@ -87,6 +87,7 @@ function Contact(props) {
                       type="text"
                       name="name"
                       id="name"
+                      autoFocus
                       value={formValues.name}
                       onChange={handleChange}
                       required
@@ -97,6 +98,7 @@ function Contact(props) {
                       type="text"
                       name="name"
                       id="name"
+                      autoFocus
                       value={formValues.name}
                       onChange={handleChange}
                       required

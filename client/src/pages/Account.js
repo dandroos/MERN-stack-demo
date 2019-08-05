@@ -24,8 +24,6 @@ function Account(props) {
     email: ""
   });
 
-  const [isAuthorised, setIsAuthorised] = useState(false);
-
   useEffect(() => {
     if (props.user) {
       setFormState({
@@ -34,10 +32,6 @@ function Account(props) {
       });
     }
   }, [props.user]);
-
-  useEffect(() => {
-    setIsAuthorised(props.isAuthenticated);
-  }, [props.isAuthenticated]);
 
   const handleChange = e =>
     setFormState({
@@ -69,20 +63,20 @@ function Account(props) {
     </>
   );
 
-  const ErrorSection = () =>(
+  const ErrorSection = () => (
     <>
-    {props.error.id === 'USER_UPDATE_FAIL' ? (
-      <Alert color="danger">{props.error.msg.msg}</Alert>
-    ): null}
+      {props.error.id === "USER_UPDATE_FAIL" ? (
+        <Alert color="danger">{props.error.msg.msg}</Alert>
+      ) : null}
     </>
-  )
+  );
 
   return (
     <Layout>
       <h1 className="font-weight-bold display-3 text-center">My Account</h1>
       <p className="lead text-center">Configure your options!</p>
       <Container>
-        {isAuthorised ? (
+        {props.isAuthenticated ? (
           <Form onSubmit={handleSubmit}>
             <ErrorSection />
             <Row>
@@ -93,6 +87,7 @@ function Account(props) {
                     type="text"
                     id="name"
                     name="name"
+                    autoFocus
                     value={formState.name}
                     onChange={handleChange}
                     required

@@ -8,7 +8,6 @@ import {
   FormGroup,
   Label,
   Input,
-  // NavLink,
   Alert
 } from "reactstrap";
 import PropTypes from "prop-types";
@@ -82,6 +81,7 @@ class LoginModal extends Component {
           className="text-dark"
           isOpen={this.state.modal}
           toggle={this.toggle}
+          autoFocus={false}
         >
           <ModalHeader toggle={this.toggle}>Login</ModalHeader>
           <ModalBody>
@@ -95,6 +95,7 @@ class LoginModal extends Component {
                   type="email"
                   name="email"
                   id="login-email"
+                  autoFocus
                   placeholder="Email"
                   className="mb-4"
                   onChange={this.onChange}

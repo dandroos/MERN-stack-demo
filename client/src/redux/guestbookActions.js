@@ -1,7 +1,6 @@
 import { GET_DOCUMENTS, INSERT_DOCUMENT, DELETE_DOCUMENT, LOADING_DOCUMENTS } from "./actionTypes";
 import axios from "axios";
 import { tokenConfig } from "./authActions";
-// import { returnErrors } from "./errorActions";
 
 export const getDocuments = () => dispatch => {
   dispatch({

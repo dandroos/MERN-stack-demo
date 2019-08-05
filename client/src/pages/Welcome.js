@@ -10,7 +10,7 @@ export default function Welcome() {
     <Layout>
       <div>
         <Container>
-          <h1 className="text-center pb-3" style={{ fontSize: '2rem'}}>
+          <h1 className="text-center pb-3" style={{ fontSize: "2rem" }}>
             Welcome to the <span className="font-weight-bold">MERN</span> stack!
           </h1>
         </Container>

@@ -78,7 +78,7 @@ class RegisterModal extends Component {
           <small>Register</small>
         </Button>
 
-        <Modal className="text-dark" isOpen={this.state.modal} toggle={this.toggle}>
+        <Modal className="text-dark" isOpen={this.state.modal} toggle={this.toggle} autoFocus={false}>
           <ModalHeader toggle={this.toggle}>Register</ModalHeader>
           <ModalBody>
             {this.state.msg ? (
@@ -86,11 +86,12 @@ class RegisterModal extends Component {
             ) : null}
             <Form onSubmit={this.onSubmit}>
               <FormGroup>
-                <Label for="name">Name</Label>
+                <Label for="register-name">Name</Label>
                 <Input
                   type="text"
                   name="name"
-                  id="name"
+                  id="register-name"
+                  autoFocus
                   placeholder="Name"
                   className="mb-4"
                   onChange={this.onChange}

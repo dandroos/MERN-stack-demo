@@ -3,24 +3,24 @@ import { connect, useDispatch } from "react-redux";
 import { Container } from "reactstrap";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 
-import { insertDocument } from "../redux/actions";
+import { insertDocument } from "../redux/guestbookActions";
 
 function AddDocumentForm(props) {
   const dispatch = useDispatch();
   const [formValues, setFormValues] = useState({
     title: "",
-    body: "",
+    body: ""
   });
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(insertDocument({
-      ...formValues,
-      author: props.user.name,
-      author_id: props.user.id,
-      author_email: props.user.email 
-    }
-      ));
+    dispatch(
+      insertDocument({
+        ...formValues,
+        author_id: props.user.id,
+        author_email: props.user.email
+      })
+    );
     setFormValues({
       title: "",
       body: ""
@@ -28,24 +28,10 @@ function AddDocumentForm(props) {
   };
 
   const handleChange = e => {
-    switch (e.target.id) {
-      case "title":
-        setFormValues({
-          ...formValues,
-          title: e.target.value,
-          body: formValues.body
-        });
-        break;
-      case "body":
-        setFormValues({
-          ...formValues,
-          title: formValues.title,
-          body: e.target.value
-        });
-        break;
-      default:
-        break;
-    }
+    setFormValues({
+      ...formValues,
+      [e.target.name]: e.target.value
+    });
   };
 
   return (
@@ -57,6 +43,7 @@ function AddDocumentForm(props) {
             type="text"
             name="title"
             id="title"
+            autoFocus
             value={formValues.title}
             onChange={handleChange}
             required
@@ -73,9 +60,7 @@ function AddDocumentForm(props) {
             required
           />
         </FormGroup>
-        <Button color="primary">
-          Submit
-        </Button>
+        <Button color="primary">Submit</Button>
       </Form>
     </Container>
   );

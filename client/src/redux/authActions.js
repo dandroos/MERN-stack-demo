@@ -34,8 +34,6 @@ export const updateUser = ({id, name, email}) => (dispatch, getState) => {
       })
     }, 3000)
   }).catch(err =>{
-    console.log('reached')
-    console.log(err)
     dispatch(returnErrors(err.response.data, err.response.status, USER_UPDATE_FAIL));
     dispatch({
       type: USER_UPDATE_FAIL
