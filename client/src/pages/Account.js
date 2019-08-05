@@ -73,7 +73,7 @@ function Account(props) {
 
   return (
     <Layout>
-      <h1 className="font-weight-bold display-3 text-center">My Account</h1>
+      <h1 className="font-weight-bold display-4 text-center">My Account</h1>
       <p className="lead text-center">Configure your options!</p>
       <Container>
         {props.isAuthenticated ? (

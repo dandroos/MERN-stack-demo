@@ -22,7 +22,7 @@ function Documents(props) {
     <>
       {props.documents.map((item,i) => {
         return (
-          <Fade up key={i}>
+          <Fade key={i}>
             <div className="mb-4 p-2 border-bottom">
               <h2 className="font-weight-bold">{item.title}</h2>
               <p>

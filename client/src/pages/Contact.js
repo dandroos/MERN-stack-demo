@@ -71,7 +71,7 @@ function Contact(props) {
   return (
     <Layout>
       <div>
-        <h1 className="font-weight-bold display-3 text-center">Contact</h1>
+        <h1 className="font-weight-bold display-4 text-center">Contact</h1>
         <p className="lead text-center">Get in touch!</p>
         <Container className="mb-4">
           <Form onSubmit={handleSubmit}>

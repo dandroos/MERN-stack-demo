@@ -62,7 +62,7 @@ function SiteNav(props) {
   return (
     <div>
       <Navbar expand="md" color="primary" dark fixed="top" id="navbarNav">
-        <NavLink exact to="/" className="navbar-brand">
+        <NavLink exact to="/" className="navbar-brand" onClick={handleLinkClick}>
           MERN Demo
         </NavLink>
         <NavbarToggler onClick={toggle} />
