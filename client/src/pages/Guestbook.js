@@ -7,7 +7,6 @@ import { connect } from "react-redux";
 function Guestbook(props) {
   return (
     <Layout>
-      {/* <div> */}
       <h1 className="font-weight-bold display-4 text-center">Guestbook</h1>
       <p className="lead text-center">Let me know you were here!</p>
       {props.isAuthenticated ? (
@@ -20,7 +19,6 @@ function Guestbook(props) {
         </div>
       )}
       <Documents />
-      {/* </div> */}
     </Layout>
   );
 }
