@@ -9,6 +9,8 @@ import {
   USER_UPDATING,
   USER_UPDATED,
   REGISTER_FAIL,
+  RESET_USER_UPDATE_FORM,
+  USER_UPDATE_FAIL
 } from "../actionTypes";
 
 const initialState = {
@@ -18,11 +20,9 @@ const initialState = {
   isUpdating: false,
   isUpdated: false,
   user: null
-
 };
 
 export default function(state = initialState, action) {
-
   switch (action.type) {
     case USER_LOADING:
       return {
@@ -41,7 +41,7 @@ export default function(state = initialState, action) {
       };
     case LOGIN_SUCCESS:
     case REGISTER_SUCCESS:
-      localStorage.setItem('token', action.payload.token)
+      localStorage.setItem("token", action.payload.token);
       return {
         ...state,
         ...action.payload,
@@ -52,7 +52,7 @@ export default function(state = initialState, action) {
     case LOGIN_FAIL:
     case LOGOUT_SUCCESS:
     case REGISTER_FAIL:
-        localStorage.removeItem("token");
+      localStorage.removeItem("token");
       return {
         ...state,
         token: null,
@@ -61,17 +61,29 @@ export default function(state = initialState, action) {
         isLoading: false
       };
     case USER_UPDATING:
-      return{
+      return {
         ...state,
         isUpdated: false,
         isUpdating: true
       };
     case USER_UPDATED:
-      return{
+      return {
         ...state,
         isUpdating: false,
-        isUpdated: true
-      }
+        isUpdated: true,
+        user: {
+          ...action.payload,
+          id: action.payload._id
+        }
+      };
+    case RESET_USER_UPDATE_FORM:
+    case USER_UPDATE_FAIL:
+      return {
+        ...state,
+        isUpdating: false,
+        isUpdated: false
+      };
+
     default:
       return state;
   }

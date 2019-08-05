@@ -21,8 +21,4 @@ const DocumentSchema = new Schema({
   }
 });
 
-// DocumentSchema.set('toJSON', {
-//   virtuals: true
-// })
-
 module.exports = Document = mongoose.model("post", DocumentSchema);

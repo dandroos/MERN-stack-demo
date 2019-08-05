@@ -1,18 +1,27 @@
-import { GET_DOCUMENTS, INSERT_DOCUMENT, DELETE_DOCUMENT } from '../actionTypes'
+import { GET_DOCUMENTS, INSERT_DOCUMENT, DELETE_DOCUMENT, LOADING_DOCUMENTS } from '../actionTypes'
 
 const initialState = {
-    documents: []
+    documents: [],
+    documentsLoading: false
 }
 
 export default(state=initialState, action)=>{
     switch(action.type){
+        case LOADING_DOCUMENTS: {
+            return {
+                ...state,
+                documentsLoading: true
+            }
+        }
         case GET_DOCUMENTS: {
             return {
                 ...state,
+                documentsLoading: false,
                 documents: action.payload
             }
         }
         case INSERT_DOCUMENT: {
+            console.log(action.payload)
             return {
                 ...state,
                 documents: [action.payload, ...state.documents]

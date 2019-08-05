@@ -17,7 +17,8 @@ function AddDocumentForm(props) {
     dispatch(insertDocument({
       ...formValues,
       author: props.user.name,
-      author_id: props.user.id
+      author_id: props.user.id,
+      author_email: props.user.email 
     }
       ));
     setFormValues({

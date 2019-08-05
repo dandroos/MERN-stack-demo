@@ -14,8 +14,9 @@ import {
 } from "reactstrap";
 import Layout from "../components/Layout";
 
-function Account(props) {
+import { clearErrors } from "../redux/errorActions";
 
+function Account(props) {
   const dispatch = useDispatch();
 
   const [formState, setFormState] = useState({
@@ -46,23 +47,33 @@ function Account(props) {
 
   const handleSubmit = e => {
     e.preventDefault();
-    dispatch(updateUser({
-      ...formState,
-      id: props.user.id
-    }))
+    props.clearErrors();
+    dispatch(
+      updateUser({
+        ...formState,
+        id: props.user.id
+      })
+    );
   };
 
-  const AlertSection = () =>(
+  const AlertSection = () => (
     <>
-    {props.isUpdating ? (
-      <Alert color="secondary">We are updating your details</Alert>
-    )
-    : null
-    }
-    {props.isUpdated ? (
-      <Alert color="secondary">Thanks! We have successfully updated your details.</Alert>
-    )
-    : null}
+      {props.isUpdating ? (
+        <Alert color="secondary">We are updating your details</Alert>
+      ) : null}
+      {props.isUpdated ? (
+        <Alert color="secondary">
+          Thanks! We have successfully updated your details.
+        </Alert>
+      ) : null}
+    </>
+  );
+
+  const ErrorSection = () =>(
+    <>
+    {props.error.id === 'USER_UPDATE_FAIL' ? (
+      <Alert color="danger">{props.error.msg.msg}</Alert>
+    ): null}
     </>
   )
 
@@ -73,6 +84,7 @@ function Account(props) {
       <Container>
         {isAuthorised ? (
           <Form onSubmit={handleSubmit}>
+            <ErrorSection />
             <Row>
               <Col md={6}>
                 <FormGroup>
@@ -103,7 +115,6 @@ function Account(props) {
             </Row>
             <Button block>Update</Button>
             <AlertSection />
-          
           </Form>
         ) : (
           <p className="text-center">
@@ -120,8 +131,12 @@ const mapStateToProps = state => {
     isAuthenticated: state.auth.isAuthenticated,
     user: state.auth.user,
     isUpdating: state.auth.isUpdating,
-    isUpdated: state.auth.isUpdated
+    isUpdated: state.auth.isUpdated,
+    error: state.error
   };
 };
 
-export default connect(mapStateToProps)(Account);
+export default connect(
+  mapStateToProps,
+  { clearErrors }
+)(Account);

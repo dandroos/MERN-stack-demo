@@ -1,9 +1,12 @@
-import { GET_DOCUMENTS, INSERT_DOCUMENT, DELETE_DOCUMENT } from "./actionTypes";
+import { GET_DOCUMENTS, INSERT_DOCUMENT, DELETE_DOCUMENT, LOADING_DOCUMENTS } from "./actionTypes";
 import axios from "axios";
 import { tokenConfig } from "./authActions";
 // import { returnErrors } from "./errorActions";
 
 export const getDocuments = () => dispatch => {
+  dispatch({
+    type: LOADING_DOCUMENTS
+  })
   axios.get("/api/documents").then(res =>
     dispatch({
       type: GET_DOCUMENTS,
@@ -18,7 +21,7 @@ export const insertDocument = data => (dispatch, getState) => {
       type: INSERT_DOCUMENT,
       payload: {
         ...res.data,
-        id: res.data._id
+        id: res.data._id,
       }
     })
   );

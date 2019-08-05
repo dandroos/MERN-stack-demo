@@ -11,7 +11,9 @@ import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,
   USER_UPDATING,
-  USER_UPDATED
+  USER_UPDATED,
+  RESET_USER_UPDATE_FORM,
+  USER_UPDATE_FAIL
 } from "./actionTypes";
 
 export const updateUser = ({id, name, email}) => (dispatch, getState) => {
@@ -26,9 +28,19 @@ export const updateUser = ({id, name, email}) => (dispatch, getState) => {
       type: USER_UPDATED,
       payload: res.data
     })
-    // dispatch({
-    //   // Reset form
-    // })
+    setTimeout(()=>{
+      dispatch({
+        type: RESET_USER_UPDATE_FORM
+      })
+    }, 3000)
+  }).catch(err =>{
+    console.log('reached')
+    console.log(err)
+    dispatch(returnErrors(err.response.data, err.response.status, USER_UPDATE_FAIL));
+    dispatch({
+      type: USER_UPDATE_FAIL
+    })
+    
   })
 }
 
@@ -49,7 +61,6 @@ export const loadUser = () => (dispatch, getState) => {
         type: AUTH_ERROR
       });
     });
-  // return Promise.resolve()
 };
 
 export const register = ({ name, email, password }) => dispatch => {

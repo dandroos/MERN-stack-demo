@@ -9,7 +9,7 @@ app.use(express.json());
 const db = process.env.MONGO_CONNECTION_STRING;
 
 mongoose
-  .connect(db, { useNewUrlParser: true, useCreateIndex: true })
+  .connect(db, { useNewUrlParser: true, useCreateIndex: true, useFindAndModify: false })
   .then(() => console.log("Mongo connected!"))
   .catch(err => console.log(err));
 
