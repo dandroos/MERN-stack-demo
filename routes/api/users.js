@@ -60,11 +60,12 @@ router.post("/", (req, res) => {
 });
 
 router.post("/:id", auth, (req, res) => {
-
-  User.findOne({ email: req.body.email}).then(user =>{
-    if (user){
-      console.log('user exists')
-      return res.status(400).json({ msg: "An account for this email address already exists" })
+  User.findOne({ email: req.body.email }).then(user => {
+    if (user) {
+      console.log("user exists");
+      return res
+        .status(400)
+        .json({ msg: "An account for this email address already exists" });
     }
 
     User.findByIdAndUpdate(
@@ -73,15 +74,13 @@ router.post("/:id", auth, (req, res) => {
         name: req.body.name,
         email: req.body.email
       },
-      {new: true},
+      { new: true },
       (err, response) => {
-        console.log('im here')
-        res.json(response)
+        console.log("im here");
+        res.json(response);
       }
     );
-  })
-
-  
+  });
 });
 
 module.exports = router;

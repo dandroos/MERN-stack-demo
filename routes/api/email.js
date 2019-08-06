@@ -91,11 +91,12 @@ router.post(
             [req.body.email],
             "You have received a new email from your website!",
             null,
-            `<h1>Contact</h1>
-          <div><strong>Name: </strong>${req.body.name}</div>
-          <div><strong>Email: </strong>${req.body.email}</div>
-          <div><strong>Message: </strong><p>${req.body.message}</p></div>
-          `
+            `
+              <h1>Contact</h1>
+              <div><strong>Name: </strong>${req.body.name}</div>
+              <div><strong>Email: </strong>${req.body.email}</div>
+              <div><strong>Message: </strong><p>${req.body.message}</p></div>
+            `
           );
         }
       ],

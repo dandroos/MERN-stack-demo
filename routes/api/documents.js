@@ -10,7 +10,10 @@ router.get("/", (req, res) => {
     .sort({ date: -1 })
     .then(documents => {
       const retArr = [];
-      documents.map((i) => {
+      if(documents.length === 0){
+        res.json(retArr)
+      }
+      documents.map(i => {
         User.findById(i.author_id).then(user => {
           retArr.push({
             ...i._doc,
@@ -35,14 +38,15 @@ router.post("/", auth, (req, res) => {
   const newDocument = new Document({
     title: req.body.title,
     body: req.body.body,
-    author: req.body.author,
-    author_id: req.body.author_id,
+    author_id: req.body.author_id
   });
 
-  newDocument.save().then(document => res.json({
-   ...document._doc,
-   email: req.body.author_email
-  }));
+  newDocument.save().then(document =>
+    res.json({
+      ...document._doc,
+      email: req.body.author_email
+    })
+  );
 });
 
 router.delete("/:id", (req, res) => {
