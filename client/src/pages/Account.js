@@ -87,7 +87,6 @@ function Account(props) {
                     type="text"
                     id="name"
                     name="name"
-                    autoFocus
                     value={formState.name}
                     onChange={handleChange}
                     required

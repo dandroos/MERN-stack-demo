@@ -93,7 +93,6 @@ function Contact(props) {
                             type="text"
                             name="name"
                             id="name"
-                            autoFocus
                             value={formValues.name}
                             onChange={handleChange}
                             required
@@ -104,7 +103,6 @@ function Contact(props) {
                             type="text"
                             name="name"
                             id="name"
-                            autoFocus
                             value={formValues.name}
                             onChange={handleChange}
                             required

@@ -11,7 +11,7 @@ import {
   // NavLink,
   Alert
 } from "reactstrap";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { register } from "../redux/authActions";
 import { clearErrors } from "../redux/errorActions";
@@ -74,11 +74,15 @@ class RegisterModal extends Component {
   render() {
     return (
       <>
-        <Button color="danger" block onClick={this.toggle} >
+        <Button color="danger" block onClick={this.toggle}>
           <small>Register</small>
         </Button>
 
-        <Modal className="text-dark" isOpen={this.state.modal} toggle={this.toggle} autoFocus={false}>
+        <Modal
+          className="text-dark"
+          isOpen={this.state.modal}
+          toggle={this.toggle}
+        >
           <ModalHeader toggle={this.toggle}>Register</ModalHeader>
           <ModalBody>
             {this.state.msg ? (
@@ -91,7 +95,6 @@ class RegisterModal extends Component {
                   type="text"
                   name="name"
                   id="register-name"
-                  autoFocus
                   placeholder="Name"
                   className="mb-4"
                   onChange={this.onChange}
@@ -130,8 +133,8 @@ const mapStateToProps = state => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
     error: state.error
-  }
-}
+  };
+};
 
 export default connect(
   mapStateToProps,

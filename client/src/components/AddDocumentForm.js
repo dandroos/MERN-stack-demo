@@ -43,7 +43,6 @@ function AddDocumentForm(props) {
             type="text"
             name="title"
             id="title"
-            autoFocus
             value={formValues.title}
             onChange={handleChange}
             required
