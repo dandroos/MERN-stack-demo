@@ -3,7 +3,7 @@ import { connect, useDispatch } from "react-redux";
 import { getDocuments, deleteDocument } from "../redux/guestbookActions";
 import moment from "moment";
 
-import Slide from "react-reveal/Slide";
+import Fade from "react-reveal/Fade";
 
 import { Container, Row, Col, Button, Spinner } from "reactstrap";
 
@@ -24,7 +24,7 @@ function Documents(props) {
         <Col md={{ size: 10, offset: 1}}>
           {props.documents.map((item, i) => {
             return (
-              <Slide left key={i} collapse>
+              <Fade up key={i} collapse>
                 <div className="mb-4 p-4 bg-light text-dark rounded">
                   <h2 className="font-weight-bold">{item.title}</h2>
                   <p>
@@ -54,7 +54,7 @@ function Documents(props) {
                     </div>
                   ) : null}
                 </div>
-              </Slide>
+              </Fade>
             );
           })}
         </Col>
