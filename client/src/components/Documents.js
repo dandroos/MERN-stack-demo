@@ -3,9 +3,9 @@ import { connect, useDispatch } from "react-redux";
 import { getDocuments, deleteDocument } from "../redux/guestbookActions";
 import moment from "moment";
 
-import Fade from "react-reveal/Fade";
+import Slide from "react-reveal/Slide";
 
-import { Container, Button, Spinner } from "reactstrap";
+import { Container, Row, Col, Button, Spinner } from "reactstrap";
 
 function Documents(props) {
   const dispatch = useDispatch();
@@ -20,41 +20,45 @@ function Documents(props) {
 
   const DocumentsSection = () => (
     <>
-      {props.documents.map((item,i) => {
-        return (
-          <Fade key={i}>
-            <div className="mb-4 p-2 border-bottom">
-              <h2 className="font-weight-bold">{item.title}</h2>
-              <p>
-                <small>
-                  Posted by{" "}
-                  <a href={`mailto:${item.email}`}>
-                    {props.user && props.user.id === item.author_id ? (
-                      <span className="font-weight-bold">YOU</span>
-                    ) : (
-                      item.name
-                    )}
-                  </a>{" "}
-                  {moment(item.date).fromNow()}
-                </small>
-              </p>
-              <p>{item.body}</p>
-              {props.user && props.user.id === item.author_id ? (
-                <div className="text-right">
-                  <Button
-                    size="sm"
-                    color="primary"
-                    id={item.id}
-                    onClick={removeDocument}
-                  >
-                    Delete
-                  </Button>
+      <Row>
+        <Col md={{ size: 10, offset: 1}}>
+          {props.documents.map((item, i) => {
+            return (
+              <Slide left key={i} collapse>
+                <div className="mb-4 p-4 bg-light text-dark rounded">
+                  <h2 className="font-weight-bold">{item.title}</h2>
+                  <p>
+                    <small>
+                      Posted by{" "}
+                      <a href={`mailto:${item.email}`}>
+                        {props.user && props.user.id === item.author_id ? (
+                          <span className="font-weight-bold">YOU</span>
+                        ) : (
+                          item.name
+                        )}
+                      </a>{" "}
+                      {moment(item.date).fromNow()}
+                    </small>
+                  </p>
+                  <p>{item.body}</p>
+                  {props.user && props.user.id === item.author_id ? (
+                    <div className="text-right">
+                      <Button
+                        size="sm"
+                        color="primary"
+                        id={item.id}
+                        onClick={removeDocument}
+                      >
+                        Delete
+                      </Button>
+                    </div>
+                  ) : null}
                 </div>
-              ) : null}
-            </div>
-          </Fade>
-        );
-      })}
+              </Slide>
+            );
+          })}
+        </Col>
+      </Row>
     </>
   );
 

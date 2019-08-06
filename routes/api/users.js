@@ -61,7 +61,7 @@ router.post("/", (req, res) => {
 
 router.post("/:id", auth, (req, res) => {
   User.findOne({ email: req.body.email }).then(user => {
-    if (user) {
+    if (user && user.id !== req.params.id) {
       console.log("user exists");
       return res
         .status(400)

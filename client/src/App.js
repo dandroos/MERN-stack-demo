@@ -9,6 +9,7 @@ import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { loadUser } from "./redux/authActions";
 
 import Welcome from "./pages/Welcome";
+import Second_page from "./pages/Second_page";
 import Guestbook from "./pages/Guestbook";
 import Account from "./pages/Account";
 import Contact from "./pages/Contact";
@@ -38,6 +39,7 @@ function App() {
                 >
                   <Switch location={props.location}>
                     <Route exact path="/" component={Welcome} />
+                    <Route path="/second_page" component={Second_page} />
                     <Route path="/guestbook" component={Guestbook} />
                     <Route path="/contact" component={Contact} />
                     <Route path="/account" component={Account} />

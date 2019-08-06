@@ -13,6 +13,8 @@ import {
 import Layout from "../components/Layout";
 import { useDispatch, connect } from "react-redux";
 import { sendMail, resetForm } from "../redux/mailActions";
+import Fade from "react-reveal/Fade";
+import ContactIllustration from "../static/svg/contact.svg";
 
 function Contact(props) {
   const dispatch = useDispatch();
@@ -71,95 +73,109 @@ function Contact(props) {
   return (
     <Layout>
       <div>
-        <h1 className="font-weight-bold display-4 text-center">Contact</h1>
-        <p className="lead text-center">Get in touch!</p>
+        <Fade down>
+          <h1 className="font-weight-bold display-4 text-center">Contact</h1>
+          <p className="lead text-center">Get in touch!</p>
+        </Fade>
         <Container className="mb-4">
           <Form onSubmit={handleSubmit}>
             {props.error.id === "MAIL_NOT_SENT" ? (
               <Alert color="danger">{props.error.msg.msg}</Alert>
             ) : null}
-            <Row>
-              <Col sm>
-                <FormGroup>
-                  <Label for="name">Name</Label>
-                  {props.isAuthenticated ? (
-                    <Input
-                      type="text"
-                      name="name"
-                      id="name"
-                      autoFocus
-                      value={formValues.name}
-                      onChange={handleChange}
-                      required
-                      disabled
-                    />
-                  ) : (
-                    <Input
-                      type="text"
-                      name="name"
-                      id="name"
-                      autoFocus
-                      value={formValues.name}
-                      onChange={handleChange}
-                      required
-                    />
-                  )}
-                </FormGroup>
+            <Row className="d-flex align-items-center">
+              <Col md={{size:6, order: 1}} xs={{ order: 2 }}>
+                  <Fade>
+                    <div>
+                      <FormGroup>
+                        <Label for="name">Name</Label>
+                        {props.isAuthenticated ? (
+                          <Input
+                            type="text"
+                            name="name"
+                            id="name"
+                            autoFocus
+                            value={formValues.name}
+                            onChange={handleChange}
+                            required
+                            disabled
+                          />
+                        ) : (
+                          <Input
+                            type="text"
+                            name="name"
+                            id="name"
+                            autoFocus
+                            value={formValues.name}
+                            onChange={handleChange}
+                            required
+                          />
+                        )}
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="email">Email</Label>
+                        {props.isAuthenticated ? (
+                          <Input
+                            type="email"
+                            name="email"
+                            id="email"
+                            value={formValues.email}
+                            onChange={handleChange}
+                            required
+                            disabled
+                          />
+                        ) : (
+                          <Input
+                            type="email"
+                            name="email"
+                            id="email"
+                            value={formValues.email}
+                            onChange={handleChange}
+                            required
+                          />
+                        )}
+                      </FormGroup>
+                      <FormGroup>
+                        <Label for="body">Message</Label>
+                        <Input
+                          type="textarea"
+                          rows={8}
+                          name="message"
+                          id="message"
+                          value={formValues.message}
+                          onChange={handleChange}
+                          required
+                        />
+                      </FormGroup>
+                      <Button color="primary" block>
+                        Send
+                      </Button>
+                      {props.isSending ? (
+                        <Alert color="primary">
+                          Sending your email. Please wait!
+                        </Alert>
+                      ) : null}
+                      {props.isSent ? (
+                        <Alert color="success">
+                          Thank you. Your message has been sent successfully.
+                        </Alert>
+                      ) : null}
+                    </div>
+                  </Fade>
               </Col>
-              <Col sm>
-                <FormGroup>
-                  <Label for="email">Email</Label>
-                  {props.isAuthenticated ? (
-                    <Input
-                      type="email"
-                      name="email"
-                      id="email"
-                      value={formValues.email}
-                      onChange={handleChange}
-                      required
-                      disabled
+
+              <Col md={6} xs={{size: 12, order: 1}}>
+              <div style={{overflow: 'hidden'}}>
+                <Fade right>
+                    <img
+                      src={ContactIllustration}
+                      alt=""
+                      style={{
+                        width: "100%",
+                        padding: "1rem 0"
+                      }}
                     />
-                  ) : (
-                    <Input
-                      type="email"
-                      name="email"
-                      id="email"
-                      value={formValues.email}
-                      onChange={handleChange}
-                      required
-                    />
-                  )}
-                </FormGroup>
-              </Col>
-            </Row>
-            <FormGroup>
-              <Label for="body">Message</Label>
-              <Input
-                type="textarea"
-                name="message"
-                id="message"
-                value={formValues.message}
-                onChange={handleChange}
-                required
-              />
-            </FormGroup>
-            <Row>
-              <Col md={3}>
-                <Button color="primary" block>
-                  Send
-                </Button>
-              </Col>
-              <Col md={9}>
-                {props.isSending ? (
-                  <Alert color="primary">
-                    Sending your email. Please wait!
-                  </Alert>
-                ) : null}
-                {props.isSent ? (
-                  <Alert color="success">
-                    Thank you. Your message has been sent successfully.
-                  </Alert>
-                ) : null}
+                </Fade>
+                </div>
               </Col>
             </Row>
           </Form>
